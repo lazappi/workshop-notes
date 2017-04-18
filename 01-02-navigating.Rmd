@@ -1,0 +1,199 @@
+## Navigating (15 mins)
+
+Before we start to do anything with the shell we need to know how to move
+around and access different directories and files^[Explain directories/folders
+and files].
+
+### Preparation
+
+The prompt is the symbol that tells us the shell is ready for us to type
+commands. If you want your prompt to look like mine type `PS1=$ `.
+
+```{bash, eval = FALSE}
+PS1=`$ `
+```
+
+### Usernames
+
+Typing the `whoami` command prints out your username, or who the computer thinks
+you are^[This will be different for everyone].
+
+```{bash}
+whoami
+```
+
+When you type this, the shell:
+
+1. Finds a program called `whoami`
+2. Runs that program
+3. Displays the output
+4. Displays the prompt, ready for more commands
+
+### Working directory
+
+Now let's try the `pwd` or "print working directory" command. This tells us
+the *current working directory*, the directory we are currently located in.
+
+```{bash}
+cd
+
+pwd
+```
+
+This will look different for everyone^[Should be home directory]. Slashes
+separate levels of directories, or the folders that are inside each other.
+
+### Listing
+
+We can see what files are inside the current directory by running the `ls` or
+"listing" command.
+
+```{bash}
+cd
+
+ls
+```
+
+This "lists" everything inside the directory in alphabetical order. To get a
+bit more detail we can add the `-F` *flag*.
+
+```{bash}
+cd
+
+ls -F
+```
+
+This adds a `/` character to the names of any directories. To see all the other
+options for `ls` try^[Note: no man pages in Gitbash, use ls --help]:
+
+```{bash, eval = FALSE}
+man ls
+```
+
+Instead of showing us what is inside the current directory we can specify which
+directory we want `ls` to list.
+
+```{bash}
+cd
+
+ls -F Desktop
+```
+
+You should see the `data-shell` directory we downloaded earlier. Let's have a
+look inside that.
+
+```{bash}
+cd
+
+ls -F Desktop/data-shell
+```
+
+### Changing directories
+
+We have seen how we can use `ls` to look inside other directories but how do we
+access them? For that we need the `cd` or "change directory" command. As the
+name suggests this command changes the directory we are currently in.
+
+```{bash}
+cd
+
+cd Desktop
+cd data-shell
+cd data
+```
+
+These commands don't display any output but if we run `pwd` we can see we are in
+a different location. Running `ls` will let us see what is in this directory.
+
+```{bash}
+cd ~/Desktop/data-shell/data
+
+pwd
+ls -F
+```
+
+So far we have moved into sub-directories, but how do we move up a level? There
+is a shortcut (`..`) that let's us move to the parent directory, up one level.
+
+```{bash}
+cd ~/Desktop/data-shell/data
+
+cd ..
+```
+
+The `..` is a special directory meaning "the directory that contains the one
+we are currently in". We can run `pwd` again to check what it has done.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+pwd
+```
+
+Usually we can't see `..` when we run `ls`, but it is still there! The `-a` or
+"show all" flag lets us see it.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls -F -a
+```
+
+We can also see `.` which is a shortcut for the current directory.
+
+What happens if we run `cd` without a directory to change into?^[Ask students]
+
+```{bash}
+cd
+```
+
+It worked, but where are we now?^[How would I find out?]
+
+```{bash}
+cd
+
+pwd
+```
+
+Running `cd` without an argument will return you to the home directory. This
+can be handy if we get lost. The `~` symbol can also be used as a shortcut for
+the home directory.
+
+Let's go back to the data directory, but this time in one step.
+
+```{bash}
+cd
+
+cd Desktop/data-shell/data
+```
+
+So far we have used *relative paths*, or paths that start from the current
+directory. We can also use *absolute paths* paths that start from the root
+directory. So to move up one directory we could use `cd ..` or instead:
+
+```{bash}
+cd /Users/Luke/Desktop/data-shell
+```
+
+### Nelle's files
+
+With the commands we have learned so far we can have a look at Nelle's files.
+Nelle names her directories starting with "year-month-day" which lets her know
+when she started working on them. Let's have a look at some of the files Nelle
+has collected:
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls north-pacific-gyre
+
+ls north-pacific-gyre/2012-07-03/
+```
+
+That was a lot to type! If we start typing a command, then press `tab` the shell
+will fill it in for us. This is called *tab completion*.
+
+
+
+
+

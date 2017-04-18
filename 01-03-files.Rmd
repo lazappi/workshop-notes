@@ -1,0 +1,218 @@
+## Files and directories (15 mins)
+
+We now know how to explore files and directories, but how do we create them in
+the first place? Let's go back to our `data-shell` directory on the Desktop
+and use `ls -F` to see what it contains:
+
+```{bash}
+cd ~/Desktop/data-shell
+pwd
+ls -F
+```
+
+Let's create a new directory called `thesis` using the command `mkdir thesis`.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+mkdir thesis
+```
+
+As you might guess from its name, `mkdir` means "make directory". Let's check
+that our new directory is there.^[Using mkdir is really no different to creating
+a file in the file explorer]
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls -F
+```
+
+Naming directories:
+
+1. Don't use whitespace
+2. Don't start with `-`
+3. Stick with letters, numbers, `.`, `-` and `_`
+
+Since we've just created the `thesis` directory, there's nothing in it yet:
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls -F thesis
+```
+{: .bash}
+
+Let's change our working directory to `thesis` using `cd`, then run a text
+editor called Nano^[There are many editors you could use. We use Nano in the
+workshop because it is avaiable on most servers and easy to use] to create a
+file called `draft.txt`:
+
+```{bash, eval = FALSE}
+cd thesis
+nano draft.txt
+```
+
+We can add text to the file by typing and at the bottom we can see a series of
+commands we can use. Let's type in a few lines of text. Once we're happy with
+our text, we can press `Ctrl-O` ^[press the Ctrl or Control key and, while 
+holding it down, press the O key] to write our data to disk^[we'll be asked what
+file we want to save this to: press Return to accept the suggested default of 
+`draft.txt`].
+
+Once our file is saved, we can use `Ctrl-X` to quit the editor and
+return to the shell.
+
+`nano` doesn't leave any output on the screen after it exits, but `ls` now shows
+that we have created a file called `draft.txt`:
+
+```{bash}
+cd ~/Desktop/data-shell/thesis
+
+ls
+```
+
+We aren't really ready to start our thesis so let's tidy up.
+
+```{bash}
+cd ~/Desktop/data-shell/thesis
+touch draft.txt
+
+rm draft.txt
+```
+
+This command removes files (`rm` is short for "remove"). If we run `ls` again,
+its output is empty once more, which tells us that our file is gone:
+
+```{bash}
+cd ~/Desktop/data-shell/thesis
+
+ls
+```
+
+Deleting is forever! When we delete something with `rm` there is no way to get
+it back!
+
+Let's re-create that file and then move up one directory to using `cd ..`:
+
+```{bash, eval = FALSE}
+pwd
+nano draft.txt
+ls
+$ cd ..
+```
+
+If we try to remove the entire `thesis` directory using `rm thesis`,
+we get an error message:
+
+```{bash, eval = FALSE}
+rm thesis
+rm: cannot remove `thesis': Is a directory
+```
+
+This happens because `rm` by default only works on files, not directories.
+
+To really get rid of `thesis` we must also delete the file `draft.txt`.
+We can do this with the `-r` (recursive) option for `rm`:
+
+```{bash}
+cd ~/Desktop/data-shell
+
+rm -r thesis
+```
+
+Let's create that directory and file one more time, this time we will run `nano`
+without changing directories first.
+
+```{bash, eval = FALSE}
+pwd
+mkdir thesis
+nano thesis/draft.txt
+ls thesis
+```
+
+
+`draft.txt` isn't a particularly informative name, so let's change the file's
+name using `mv`, which is short for "move":
+
+```{bash}
+####
+cd ~/Desktop/data-shell
+mkdir thesis
+touch thesis/draft.txt
+####
+
+mv thesis/draft.txt thesis/quotes.txt
+```
+
+The first argument is the file we are moving (`thesis/draft.txt`) and the second
+is where we want to move it to (`thesis/quotes.txt`). This has the same effect
+as renaming the file. We can check with `ls`.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls thesis
+```
+
+Be careful when using `mv` as it will silently overwrite any existing file with 
+the same name. If we use the `-i` flag `mv` will ask for confirmation first.
+We can move directories in the same way, --- there is no separate `mvdir`
+command.
+
+Let's move `quotes.txt` into the current working directory. We use `mv` again,
+but this time we'll just use the name of a directory as the second parameter
+to tell `mv` that we want to keep the filename, but put the file somewhere new.
+In this case, the directory name we use is the special directory name `.` that
+we mentioned earlier.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+mv thesis/quotes.txt .
+```
+
+The effect is to move the file from the directory it was in to the current 
+working directory. `ls` now shows us that `thesis` is empty:
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls thesis
+```
+
+But we can use `ls` to see that `quotes.txt` is in the current directory.
+
+```{bash}
+cd ~/Desktop/data-shell
+
+ls quotes.txt
+```
+
+The `cp` command works very much like `mv`, except it copies a file instead of 
+moving it. We can check that it did the right thing using `ls` with two paths as
+parameters --- like most Unix commands, `ls` can be given multiple paths at
+once:
+
+```{bash}
+cd ~/Desktop/data-shell
+
+cp quotes.txt thesis/quotations.txt
+ls quotes.txt thesis/quotations.txt
+```
+
+To prove that we made a copy, let's delete the `quotes.txt` file in the current
+directory and then run that same `ls` again.
+
+```{bash, eval = FALSE}
+cd ~/Desktop/data-shell
+
+rm quotes.txt
+ls quotes.txt thesis/quotations.txt
+```
+
+
+This time it tells us that it can't find `quotes.txt` in the current directory,
+but it does find the copy in `thesis` that we didn't delete.
+
+**Answer questions at the bottom of materials**

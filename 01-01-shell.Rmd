@@ -1,3 +1,28 @@
-## Section 1
+## Introduction
 
-The first section...
+Computers can do four things:
+
+* run programs
+* store data
+* communicate with each other
+* interact with us
+
+You are probably used to interacting with computers using a *graphical user 
+interface* or *GUI*. Today we are going to use a *command-line interface*. or
+*CLI*. When we use a CLI we type commands and the computer shows us the output.
+The program we use to do this is called a *command shell*, in particular we
+use the *bash* shell. This can be the most convenient way to interact with
+remote machines and supercomputers.
+
+### The scenario
+
+The scenario we use in the Shell lesson is based around Nelle Nemo, a marine
+biologist. She has many samples and needs to:
+
+1. Run each sample on a machine
+2. Calculate statistics usig a program called `goostat`
+3. Compare the statistics using a program called `goodiff`
+4. Write up the results
+
+This is going to take a long time! In this lesson we are going to explore how
+we can use the shell to make Nelle's work easier.

@@ -1,4 +1,9 @@
-book_filename: "bookdown-demo"
+book_filename: "workshop-notes"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: ""
+rmd_files: ["index.Rmd",
+            "01-shell.Rmd",
+            "01-01-shell.Rmd",
+            "01-02-navigating.Rmd",
+            "01-03-files.Rmd"]
